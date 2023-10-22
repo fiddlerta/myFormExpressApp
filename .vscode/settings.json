@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/67a6151e-654d-4a17-8bdf-12d891d36b83/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/starter-webapp-express-0101",
-    "appService.deploySubpath": "."
-}
