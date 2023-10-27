@@ -73,6 +73,7 @@ jobs:
 
   automerge:
     runs-on: ubuntu-latest
+    needs: test
     steps:
     - name: Automatically merge Pull Request 
       run: echo Pull Request is merged
