@@ -1,11 +1,9 @@
 concurrency: ci-${{github.actor}}
 on:
   pull_request:
+    types: [opened, reopened, edited, synchronize]
     branches:
       - developement
-  push:
-    branches:
-      - dependabot/**'
   workflow_dispatch:
 
 env:
