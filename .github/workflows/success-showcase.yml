@@ -73,9 +73,20 @@ jobs:
     - name: Run performance smoke tests 
       run: echo K6 tests passed
 
-  automerge:
-    runs-on: ubuntu-latest
+  auto-merge-dependabot:
+    name: Auto merge dependabot PR
     needs: test
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+    permissions: 
+      pull-requests: write
+      contents: write
     steps:
-    - name: Automatically merge Pull Request 
-      run: echo Pull Request is merged
+    - name: Merge PR from dependabot
+      uses: fastify/github-action-merge-dependabot@v3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN}}
+        target: any
+        merge_method: rebase
+        
+
