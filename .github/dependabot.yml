@@ -1,0 +1,15 @@
+version: 2
+updates:
+
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "npm"
+    # Workflow files stored in the default location of `.github/workflows`. (You don't need to specify `/.github/workflows` for `directory`. You can use `directory: "/"`.)
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "09:00"
+    commit-message: 
+      prefix: "npm"
+    # by default: 5
+    open-pull-requests-limit: 10
+

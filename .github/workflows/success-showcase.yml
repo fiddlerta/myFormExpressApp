@@ -26,6 +26,7 @@ jobs:
         cache: 'npm'
 
     - name: npm install, build, and run unit tests
+      # add unit tests 
       run: |
         npm install
         npm run build --if-present
@@ -65,9 +66,10 @@ jobs:
     needs: deploy
     
     steps: 
+      # add e2e tests
     - name: Run e2e smoke tests
       run: echo Cypress tests passed 
-
+      # # add performance tests
     - name: Run performance smoke tests 
       run: echo K6 tests passed
 
