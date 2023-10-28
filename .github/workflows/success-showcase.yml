@@ -97,5 +97,6 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN}}
         target: any
         merge-method: rebase
+        skip-commit-verification: true
 
 
