@@ -13,8 +13,8 @@ permissions:
   contents: read
 
 jobs:
-  if: star
   build:
+    if: startsWith(github.head_ref, 'dependabot/')
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -32,7 +32,6 @@ jobs:
         npm run test --if-present
 
     - name: Upload artifact for deployment job
-      run: echo artifact uploaded successfully
       uses: actions/upload-artifact@v3
       with:
         name: node-app
@@ -49,19 +48,17 @@ jobs:
 
     steps:
     - name: Download artifact from build job
-      run: echo artifact downloaded successfully
       uses: actions/download-artifact@v3
-       with:
-          name: node-app
+      with:
+        name: node-app
 
     - name: 'Deploy to Azure WebApp'
       id: deploy-to-webapp
-      run: echo deploy to Azure WebApp completed gracefully
-      # uses: azure/webapps-deploy@v2
-      # with:
-      #   app-name: ${{ env.AZURE_WEBAPP_NAME }}
-      #   publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-      #   package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      uses: azure/webapps-deploy@v2
+      with:
+         app-name: ${{ env.AZURE_WEBAPP_NAME }}
+         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
   test:
     runs-on: ubuntu-latest
