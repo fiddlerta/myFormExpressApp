@@ -1,3 +1,4 @@
+concurrency: ci-${{github.actor}}
 on:
   pull_request:
     branches:
@@ -88,5 +89,5 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN}}
         target: any
         merge_method: rebase
-        
+
 
