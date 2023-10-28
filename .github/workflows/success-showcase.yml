@@ -98,5 +98,6 @@ jobs:
         target: any
         merge-method: rebase
         skip-commit-verification: true
+        skip-verification: true
 
 
