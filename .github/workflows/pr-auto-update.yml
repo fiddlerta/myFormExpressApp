@@ -1,9 +1,10 @@
 # https://github.com/marketplace/actions/auto-update
+# Read limitations
 name: autoupdate
 on: 
     push: 
         branches: 
-            - developement
+            - non-existing-branch
 
 jobs: 
     autoupdate:
