@@ -1,6 +1,7 @@
 concurrency: ci-${{github.actor}}
 on:
   pull_request:
+    types: [opened, reopened, synchronize, edited]
     branches:
       - developement
   workflow_dispatch:
