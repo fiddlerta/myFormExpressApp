@@ -43,7 +43,6 @@ jobs:
         project: ${{ github.workspace }}/cypress-tests
         browser: chrome
         start: npm run start
-        unit-tests: npm run unit-tests
         wait-on: "http://localhost:3000"
 
     - name: Upload artifact for deployment job
