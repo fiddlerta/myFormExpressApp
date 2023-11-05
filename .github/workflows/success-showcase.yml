@@ -40,7 +40,7 @@ jobs:
     - name: Cypress run
       uses: cypress-io/github-action@v3
       with:
-        project: ./cypress-tests
+        project: ${{ github.workspace }}/cypress-tests
         browser: chrome
         start: npm run start
         unit-tests: npm run unit-tests
