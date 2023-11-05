@@ -34,7 +34,7 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
 
-    - name: npm install packages
+    - name: npm install packages 
       run: npm ci
   
     - name: Cypress run
