@@ -19,7 +19,14 @@ jobs:
     if: startsWith(github.head_ref, 'dependabot/')
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: checkout code from PR
+      uses: actions/checkout@v3
+
+    - name: checkout cypress tests from remore repo
+      uses: actions/checkout@v4
+      with: 
+        repository: fiddlerta/PayPay_cypress_tests
+        path: cypress-tests
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
@@ -27,18 +34,21 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
 
-    - name: npm install, build, and run unit tests
-      # add unit tests 
-      run: |
-        npm install
-        npm run build --if-present
-        npm run test --if-present
+    - name: npm install packages
+      run: npm ci
+
+    - name: run unit tests
+      run: | 
+          cd cypress-tests
+          npm run unit-tests
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v3
       with:
         name: node-app
-        path: .
+        path: |
+            .
+            !./cypress-tests
 
   deploy:
     permissions:
