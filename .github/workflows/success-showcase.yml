@@ -22,7 +22,7 @@ jobs:
     - name: checkout code from PR
       uses: actions/checkout@v3
 
-    - name: checkout cypress tests from remore repo
+    - name: checkout cypress tests from remote repo
       uses: actions/checkout@v4
       with: 
         repository: fiddlerta/PayPay_cypress_tests
@@ -37,10 +37,13 @@ jobs:
     - name: npm install packages
       run: npm ci
   
-    - name: run unit tests
-      run: | 
-          cd cypress-tests
-          npm run unit-tests
+    - name: Cypress run
+      uses: cypress-io/github-action@v3
+      with:
+        project: ./cypress-tests
+        browser: chrome
+        start: npm run unit-tests
+        wait-on: "http://localhost:3000"
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v3
