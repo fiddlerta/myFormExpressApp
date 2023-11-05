@@ -39,11 +39,7 @@ jobs:
   
     - name: Cypress run
       uses: cypress-io/github-action@v3
-      with:
-        project: ${{ github.workspace }}/cypress-tests
-        browser: chrome
-        start: npm run start
-        wait-on: "http://localhost:3000"
+      
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v3
