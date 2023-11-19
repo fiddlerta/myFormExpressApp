@@ -82,6 +82,9 @@ jobs:
       - name: run Cypress tests
         uses: cypress-io/github-action@v3
 
+      - name: run tests 25 mins
+        run: sleep 25m
+
   auto-merge-dependabot:
     name: Auto merge dependabot PR
     needs: test
